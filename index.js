@@ -10,7 +10,7 @@ app.use(cors());
 const { Configuration, OpenAIApi } = require('openai');
 const configuration = new Configuration({
   organization: 'org-3huf00qoMaF8jbVpyW9luxwZ',
-  apiKey: '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',
+  apiKey: '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',
 });
 const openai = new OpenAIApi(configuration);
 // const response = await openai.listEngines();
@@ -29,6 +29,14 @@ app.post('/', async (req, res) => {
   res.json({
     // data: response.data,
     message: response.data.choices[0].text,
+  });
+});
+
+app.get('/models', async (req, res) => {
+  const response = await openai.listEngines();
+  console.log(responsedata.data);
+  res.json({
+    models: response.data.data,
   });
 });
 
